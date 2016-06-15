@@ -1,14 +1,18 @@
 package com.inothnagel.compilers.visual_shapes_manipulator.application;
 
-import java.awt.*;
+public abstract class Shape {
+    private ShapeColor color;
 
-/**
- * Created by inothnagel on 2016/06/13.
- */
-public class Shape {
-    private Color color;
+    public void setColor(String name) {
+        this.color = new ShapeColor(name);
+    }
 
-    public void setColor(Color color) {
+    public void setColor(ShapeColor color) {
         this.color = color;
+    }
+    public abstract void render();
+
+    public ShapeColor getColor() {
+        return color;
     }
 }
