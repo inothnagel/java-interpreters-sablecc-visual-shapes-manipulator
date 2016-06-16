@@ -4,9 +4,11 @@ An experiment in creating a sablecc-based interpreter for a language that descri
 the creation and manipulation of visual shapes on a canvas.
 
 ### Some high level goal are:
- - Keep the language English
- - Keep the language intuitive
- - Support complex programming-language like features
+ - Make it English: Instructions should be normal English sentences.
+ - Make it intuitive: Instructions should be what an uninituated person
+ would naturally want to say in order to achieve the effect.
+ - Support complex programming-language like features including blocks,
+ sequences, user defined behaviors and shapes, naming, etc. 
  - Provide powerful control over the shapes, including animations
 
 ### Commands that work so far:
