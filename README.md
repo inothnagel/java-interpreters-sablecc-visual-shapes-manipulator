@@ -1,4 +1,24 @@
-Experimenting with a simple grammar to manipulate shapes on a canvas.
+# ShaMan: Shape Manipulation Language
+
+An experiment in creating a sablecc-based interpreter for a language that describes
+the creation and manipulation of visual shapes on a canvas.
+
+### Some high level goal are:
+ - Keep the language English
+ - Keep the language intuitive
+ - Support complex programming-language like features
+ - Provide powerful control over the shapes, including animations
+
+### Commands that work so far:
+`draw a COLOR SHAPE`
+Commands like "draw a red dot" or "draw a yellow square" work as expected
+and render the appropriate shape.
+
+`move it DIRECTION`
+Commands like "move it down" cause the appropriate shape to slide animatedly
+to its new position.
+The phrase "it" is remembered as the last shape explicitly referred to.
+Direction instructions are understood for `up`, `down`, `left`, and `right`.
 
 ### Todo:
  - Add a Gradle task to regenerate the parser
