@@ -8,6 +8,18 @@ import java.awt.*;
 public class TriangleShape extends Shape {
     @Override
     public void render(Graphics graphics) {
-        System.out.println("Rendering a triangle");
+        Color color = this.getColor().getRgbColor();
+        graphics.setColor(color);
+        int[] xs = {
+                getX() - (getWidth()/2),
+                getX(),
+                getX() + (getWidth()/2),
+        };
+        int[] ys = {
+                getY() + (getHeight()/2),
+                getY() - (getHeight()/2),
+                getY() + (getHeight()/2),
+        };
+        graphics.fillPolygon(xs, ys, 3);
     }
 }
