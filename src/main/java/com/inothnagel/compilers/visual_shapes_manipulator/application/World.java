@@ -1,5 +1,6 @@
 package com.inothnagel.compilers.visual_shapes_manipulator.application;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class World {
         this.shapes.add(shape);
     }
 
-    public void render() {
-        shapes.forEach(shape -> shape.render());
+    public void render(Graphics graphics) {
+        shapes.forEach(shape -> shape.render(graphics));
     }
 }

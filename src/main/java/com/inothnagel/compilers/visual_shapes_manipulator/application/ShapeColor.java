@@ -8,9 +8,18 @@ public class ShapeColor {
 
     ShapeColor(String name) {
         this.name = name;
+        switch (name) {
+            case "red": this.rgbColor = new Color(255,0,0); break;
+            case "green": this.rgbColor = new Color(0,255,0); break;
+            case "blue": this.rgbColor = new Color(0,0,255); break;
+        }
     }
 
     public String toString() {
         return name;
+    }
+
+    public Color getRgbColor() {
+        return rgbColor;
     }
 }

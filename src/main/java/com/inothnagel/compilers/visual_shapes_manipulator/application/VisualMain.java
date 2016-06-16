@@ -70,7 +70,7 @@ public class VisualMain extends JFrame {
         while (true) {
             Graphics graphics = canvas.getBufferStrategy().getDrawGraphics();
             clearBackground(graphics);
-            VisualMain.world.render();
+            VisualMain.world.render(graphics);
             canvas.getBufferStrategy().show();
             sleep(40);
         }
