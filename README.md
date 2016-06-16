@@ -22,6 +22,7 @@ Direction instructions are understood for `up`, `down`, `left`, and `right`.
 
 ### Todo:
  - Add a Gradle task to regenerate the parser
+ - Support multiple sentences per line like `draw a red dot. move it up.`
  - Add ability to specify shape size
  - Add ability to specify shape position
  - Add ability to move shapes
@@ -38,6 +39,29 @@ Direction instructions are understood for `up`, `down`, `left`, and `right`.
 `add a yellow dot and a blue dot`
 `every 5 seconds, remove a yellow dot and add a blue square`
 `every 10 seconds, replace a green dot with a blue dot`
+
+### Selection phrases to support:
+`it` is now supported, as in the sequence `draw a dot. make it small.`
+`them` See `Them-sreaks` below.
+`a` select any element from the set that matches, for example `make a small red dot disappear`
+`half of` and similar portions, such as `move half of the red dots left`
+
+#### Them-streaks
+Observe the following sequence of commands:
+
+```
+draw a red dot
+draw a blue dot
+move them left
+draw a yelow dot
+draw a green dot
+move them right
+```
+
+Note how an English speaker expects the first command to apply to the red and blue dots,
+and expects the second command to apply to only the yellow and green dots.
+The red and blue dots are left, the yellow and green dots are right.
+We will call this expectation "them-streaks".
 
 ### Some animation command ideas
 `make a blue dot called bobby`
