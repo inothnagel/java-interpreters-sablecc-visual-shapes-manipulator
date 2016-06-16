@@ -12,9 +12,7 @@ public class DotShape extends Shape {
 
     @Override
     public void render(Graphics graphics) {
-//        System.out.println("Rendering a " + getColor() + " dot");
         Color color = this.getColor().getRgbColor();
-//        System.out.println()
         graphics.setColor(color);
         graphics.fillOval(getX(), getY(), getWidth(), getHeight());
     }

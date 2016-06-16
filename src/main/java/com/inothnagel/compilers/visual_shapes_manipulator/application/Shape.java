@@ -8,10 +8,14 @@ public abstract class Shape {
     private ShapeColor color;
     private int y;
     private int x;
+    private int width;
+    private int height;
 
     Shape() {
         this.x = (int) (Math.random()* MAX_X);
         this.y = (int) (Math.random()* MAX_Y);
+        this.width = (int) (Math.random() * 50) + 50;
+        this.height = width;
         System.out.println("Drew a dot at " + x + "," + y);
     }
 
@@ -29,11 +33,11 @@ public abstract class Shape {
     }
 
     public int getWidth() {
-        return 50;
+        return width;
     }
 
     protected int getHeight() {
-        return 50;
+        return height;
     }
 
     protected int getY() {

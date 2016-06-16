@@ -12,6 +12,7 @@ public class ShapeColor {
             case "red": this.rgbColor = new Color(255,0,0); break;
             case "green": this.rgbColor = new Color(0,255,0); break;
             case "blue": this.rgbColor = new Color(0,0,255); break;
+            case "yellow": this.rgbColor = new Color(255, 255, 0); break;
         }
     }
 

@@ -8,6 +8,8 @@ import java.awt.*;
 public class SquareShape extends Shape {
     @Override
     public void render(Graphics graphics) {
-        System.out.println("Rendering a square");
+        Color color = this.getColor().getRgbColor();
+        graphics.setColor(color);
+        graphics.fillRect(getX(),getY(),getWidth(), getHeight());
     }
 }
