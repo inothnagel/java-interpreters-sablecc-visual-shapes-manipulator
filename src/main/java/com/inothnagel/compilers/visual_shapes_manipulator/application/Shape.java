@@ -1,6 +1,9 @@
 package com.inothnagel.compilers.visual_shapes_manipulator.application;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class Shape {
     public static final int MAX_X = 1000;
@@ -10,6 +13,7 @@ public abstract class Shape {
     private int x;
     private int width;
     private int height;
+    private List<Animation> animations = Collections.synchronizedList(new ArrayList<>());
 
     Shape() {
         this.x = (int) (Math.random()* MAX_X);
@@ -46,5 +50,26 @@ public abstract class Shape {
 
     protected int getX() {
         return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void addAnimation(Animation animation) {
+        this.animations.add(animation);
+    }
+
+    public void tick() {
+        animations.removeIf(animation -> animation.toDestroy());
+        animations.forEach(animation -> animation.tick());
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void removeAnimation(Animation animation) {
+        animations.remove(animation);
     }
 }

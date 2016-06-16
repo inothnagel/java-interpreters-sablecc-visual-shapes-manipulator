@@ -61,6 +61,35 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outADrawCommand(node);
     }
 
+    public void inAMoveCommand(AMoveCommand node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMoveCommand(AMoveCommand node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMoveCommand(AMoveCommand node)
+    {
+        inAMoveCommand(node);
+        if(node.getMove() != null)
+        {
+            node.getMove().apply(this);
+        }
+        if(node.getSelector() != null)
+        {
+            node.getSelector().apply(this);
+        }
+        if(node.getDirection() != null)
+        {
+            node.getDirection().apply(this);
+        }
+        outAMoveCommand(node);
+    }
+
     public void inANoun(ANoun node)
     {
         defaultIn(node);
@@ -88,5 +117,26 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getShape().apply(this);
         }
         outANoun(node);
+    }
+
+    public void inASelector(ASelector node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASelector(ASelector node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASelector(ASelector node)
+    {
+        inASelector(node);
+        if(node.getIt() != null)
+        {
+            node.getIt().apply(this);
+        }
+        outASelector(node);
     }
 }

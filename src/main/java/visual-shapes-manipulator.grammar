@@ -7,13 +7,20 @@ Tokens
     color = 'red' | 'green' | 'blue' | 'yellow';
     shape = 'dot' | 'circle' | 'square' | 'triangle';
     blank = (' ' | 13 | 10)+;
+    move = 'move';
+    it = 'it';
+    direction = 'up' | 'down' | 'left' | 'right';
 
 Ignored Tokens
 	blank;
 
 Productions
     command =
-        {draw} draw noun;
+        {draw} draw noun |
+        {move} move selector direction;
 
     noun =
         a color shape;
+
+    selector =
+        it;

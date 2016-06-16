@@ -204,10 +204,22 @@ public class Parser
                 push(goTo(0), list, false);
             }
             break;
-            case 1: /* reduce ANoun */
+            case 1: /* reduce AMoveCommand */
             {
                 ArrayList<Object> list = new1();
+                push(goTo(0), list, false);
+            }
+            break;
+            case 2: /* reduce ANoun */
+            {
+                ArrayList<Object> list = new2();
                 push(goTo(1), list, false);
+            }
+            break;
+            case 3: /* reduce ASelector */
+            {
+                ArrayList<Object> list = new3();
+                push(goTo(2), list, false);
             }
             break;
         }
@@ -239,7 +251,33 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new1() /* reduce ANoun */
+    ArrayList<Object> new1() /* reduce AMoveCommand */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCommand pcommandNode1;
+        {
+            // Block
+        TMove tmoveNode2;
+        PSelector pselectorNode3;
+        TDirection tdirectionNode4;
+        tmoveNode2 = (TMove)nodeArrayList1.get(0);
+        pselectorNode3 = (PSelector)nodeArrayList2.get(0);
+        tdirectionNode4 = (TDirection)nodeArrayList3.get(0);
+
+        pcommandNode1 = new AMoveCommand(tmoveNode2, pselectorNode3, tdirectionNode4);
+        }
+	nodeList.add(pcommandNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new2() /* reduce ANoun */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -264,32 +302,59 @@ public class Parser
 
 
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new3() /* reduce ASelector */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PSelector pselectorNode1;
+        {
+            // Block
+        TIt titNode2;
+        titNode2 = (TIt)nodeArrayList1.get(0);
+
+        pselectorNode1 = new ASelector(titNode2);
+        }
+	nodeList.add(pselectorNode1);
+        return nodeList;
+    }
+
+
+
     private static int[][][] actionTable;
 /*      {
-			{{-1, ERROR, 0}, {0, SHIFT, 1}, },
-			{{-1, ERROR, 1}, {1, SHIFT, 3}, },
-			{{-1, ERROR, 2}, {5, ACCEPT, -1}, },
-			{{-1, ERROR, 3}, {3, SHIFT, 5}, },
+			{{-1, ERROR, 0}, {0, SHIFT, 1}, {5, SHIFT, 2}, },
+			{{-1, ERROR, 1}, {1, SHIFT, 4}, },
+			{{-1, ERROR, 2}, {6, SHIFT, 6}, },
+			{{-1, ERROR, 3}, {8, ACCEPT, -1}, },
+			{{-1, ERROR, 4}, {3, SHIFT, 8}, },
 			{{-1, REDUCE, 0}, },
-			{{-1, ERROR, 5}, {4, SHIFT, 6}, },
+			{{-1, REDUCE, 3}, },
+			{{-1, ERROR, 7}, {7, SHIFT, 9}, },
+			{{-1, ERROR, 8}, {4, SHIFT, 10}, },
 			{{-1, REDUCE, 1}, },
+			{{-1, REDUCE, 2}, },
         };*/
     private static int[][][] gotoTable;
 /*      {
-			{{-1, 2}, },
-			{{-1, 4}, },
+			{{-1, 3}, },
+			{{-1, 5}, },
+			{{-1, 7}, },
         };*/
     private static String[] errorMessages;
 /*      {
-			"expecting: 'draw'",
+			"expecting: 'draw', 'move'",
 			"expecting: 'a'",
+			"expecting: 'it'",
 			"expecting: EOF",
 			"expecting: color",
+			"expecting: direction",
 			"expecting: shape",
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 2, 4, 2, 
+			0, 1, 2, 3, 4, 3, 5, 5, 6, 3, 3, 
         };*/
 
     static 

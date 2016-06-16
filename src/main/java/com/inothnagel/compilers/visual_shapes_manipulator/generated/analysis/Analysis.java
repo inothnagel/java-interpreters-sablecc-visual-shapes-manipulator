@@ -13,7 +13,9 @@ public interface Analysis extends Switch
 
     void caseStart(Start node);
     void caseADrawCommand(ADrawCommand node);
+    void caseAMoveCommand(AMoveCommand node);
     void caseANoun(ANoun node);
+    void caseASelector(ASelector node);
 
     void caseTDraw(TDraw node);
     void caseTA(TA node);
@@ -21,6 +23,9 @@ public interface Analysis extends Switch
     void caseTColor(TColor node);
     void caseTShape(TShape node);
     void caseTBlank(TBlank node);
+    void caseTMove(TMove node);
+    void caseTIt(TIt node);
+    void caseTDirection(TDirection node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }

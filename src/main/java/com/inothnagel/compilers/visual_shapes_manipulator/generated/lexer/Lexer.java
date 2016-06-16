@@ -237,6 +237,37 @@ public class Lexer
                             this.line = accept_line;
                             return token;
                         }
+                    case 6:
+                        {
+                            @SuppressWarnings("hiding") Token token = new6(
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 7:
+                        {
+                            @SuppressWarnings("hiding") Token token = new7(
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 8:
+                        {
+                            @SuppressWarnings("hiding") Token token = new8(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
                     }
                 }
                 else
@@ -264,6 +295,9 @@ public class Lexer
     Token new3(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TColor(text, line, pos); }
     Token new4(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TShape(text, line, pos); }
     Token new5(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TBlank(text, line, pos); }
+    Token new6(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMove(line, pos); }
+    Token new7(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TIt(line, pos); }
+    Token new8(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDirection(text, line, pos); }
 
     private int getChar() throws IOException
     {
@@ -323,56 +357,74 @@ public class Lexer
     private static int[][][][] gotoTable;
 /*  {
         { // INITIAL
-            {{10, 10, 1}, {13, 13, 2}, {32, 32, 3}, {97, 97, 4}, {98, 98, 5}, {99, 99, 6}, {100, 100, 7}, {103, 103, 8}, {114, 114, 9}, {115, 115, 10}, {116, 116, 11}, {121, 121, 12}, },
+            {{10, 10, 1}, {13, 13, 2}, {32, 32, 3}, {97, 97, 4}, {98, 98, 5}, {99, 99, 6}, {100, 100, 7}, {103, 103, 8}, {105, 105, 9}, {108, 108, 10}, {109, 109, 11}, {114, 114, 12}, {115, 115, 13}, {116, 116, 14}, {117, 117, 15}, {121, 121, 16}, },
             {{10, 32, -2}, },
             {{10, 32, -2}, },
             {{10, 32, -2}, },
             {},
-            {{108, 108, 13}, },
-            {{105, 105, 14}, },
-            {{111, 111, 15}, {114, 114, 16}, },
-            {{114, 114, 17}, },
-            {{101, 101, 18}, },
-            {{113, 113, 19}, },
-            {{104, 104, 20}, {114, 114, 21}, },
-            {{101, 101, 22}, },
-            {{117, 117, 23}, },
-            {{114, 114, 24}, },
-            {{116, 116, 25}, },
-            {{97, 97, 26}, },
-            {{101, 101, 27}, },
-            {{100, 100, 28}, },
-            {{117, 117, 29}, },
-            {{101, 101, 30}, },
-            {{105, 105, 31}, },
-            {{108, 108, 32}, },
-            {{101, 101, 33}, },
-            {{99, 99, 34}, },
+            {{108, 108, 17}, },
+            {{105, 105, 18}, },
+            {{111, 111, 19}, {114, 114, 20}, },
+            {{114, 114, 21}, },
+            {{116, 116, 22}, },
+            {{101, 101, 23}, },
+            {{111, 111, 24}, },
+            {{101, 101, 25}, {105, 105, 26}, },
+            {{113, 113, 27}, },
+            {{104, 104, 28}, {114, 114, 29}, },
+            {{112, 112, 30}, },
+            {{101, 101, 31}, },
+            {{117, 117, 32}, },
+            {{114, 114, 33}, },
+            {{116, 116, 34}, {119, 119, 35}, },
+            {{97, 97, 36}, },
+            {{101, 101, 37}, },
             {},
-            {{119, 119, 35}, },
-            {{101, 101, 36}, },
+            {{102, 102, 38}, },
+            {{118, 118, 39}, },
+            {{100, 100, 40}, },
+            {{103, 103, 41}, },
+            {{117, 117, 42}, },
+            {{101, 101, 43}, },
+            {{105, 105, 44}, },
             {},
-            {{97, 97, 37}, },
-            {},
-            {{97, 97, 38}, },
-            {{108, 108, 39}, },
-            {},
-            {{108, 108, 40}, },
-            {},
-            {{110, 110, 41}, },
-            {{114, 114, 42}, },
-            {{110, 110, 43}, },
-            {{111, 111, 44}, },
-            {{101, 101, 45}, },
-            {},
+            {{108, 108, 45}, },
             {{101, 101, 46}, },
-            {{103, 103, 47}, },
-            {{119, 119, 48}, },
+            {{99, 99, 47}, },
             {},
-            {},
-            {{108, 108, 49}, },
-            {},
+            {{110, 110, 48}, },
+            {{119, 119, 49}, },
             {{101, 101, 50}, },
+            {{116, 116, 51}, },
+            {{101, 101, 52}, },
+            {},
+            {{104, 104, 53}, },
+            {{97, 97, 54}, },
+            {},
+            {{97, 97, 55}, },
+            {{108, 108, 56}, },
+            {},
+            {{108, 108, 57}, },
+            {},
+            {},
+            {{110, 110, 58}, },
+            {},
+            {},
+            {{116, 116, 59}, },
+            {{114, 114, 60}, },
+            {{110, 110, 61}, },
+            {{111, 111, 62}, },
+            {{101, 101, 63}, },
+            {},
+            {},
+            {{101, 101, 64}, },
+            {{103, 103, 65}, },
+            {{119, 119, 66}, },
+            {},
+            {},
+            {{108, 108, 67}, },
+            {},
+            {{101, 101, 68}, },
             {},
         }
     };*/
@@ -380,7 +432,7 @@ public class Lexer
     private static int[][] accept;
 /*  {
         // INITIAL
-        {-1, 5, 5, 5, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, -1, -1, 3, -1, 2, -1, -1, 3, -1, 0, -1, -1, -1, -1, -1, 3, -1, -1, -1, 4, 4, -1, 3, -1, 4, },
+        {-1, 5, 5, 5, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 7, -1, -1, -1, -1, -1, -1, -1, 8, -1, -1, -1, 4, -1, -1, -1, -1, -1, 3, -1, -1, 2, -1, -1, 3, -1, 8, 0, -1, 8, 6, -1, -1, -1, -1, -1, 3, 8, -1, -1, -1, 4, 4, -1, 3, -1, 4, },
 
     };*/
 

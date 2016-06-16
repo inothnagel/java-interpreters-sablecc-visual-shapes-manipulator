@@ -81,7 +81,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAMoveCommand(AMoveCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseANoun(ANoun node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASelector(ASelector node)
     {
         defaultCase(node);
     }
@@ -118,6 +130,24 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTBlank(TBlank node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMove(TMove node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTIt(TIt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTDirection(TDirection node)
     {
         defaultCase(node);
     }
